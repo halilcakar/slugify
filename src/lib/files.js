@@ -17,24 +17,35 @@ const fixName = (name) => {
     .join("-");
 };
 
+const copyFile = async (file, target, destination, debug) => {
+  let oldPath = `${target}\\${file}`;
+  let newPath = `${destination}\\${fixName(file)}`;
+
+  if (await fs.lstatSync(oldPath).isDirectory()) {
+    await process({ target: oldPath, destination: newPath });
+  }
+  else {
+    if (debug) {
+      console.log(`${file} to ${fixName(file)}`);
+    }
+    await fs.copy(oldPath, newPath);
+  }
+};
+
 const process = async ({ target, destination, debug }) => {
+
+  if (!fs.lstatSync(target).isDirectory()) {
+    let info = target.split('\\');
+    let fileName = info.pop();
+    return copyFile(fileName, info.join('\\'), info.join('\\'), debug);
+  }
+
   let files = await fs.readdir(target, 'utf-8');
 
   await Promise.all(
-    files.map(async (file) => {
-      let oldPath = `${target}\\${file}`;
-      let newPath = `${destination}\\${fixName(file)}`;
-
-      if (await fs.lstatSync(oldPath).isDirectory()) {
-        await process({ target: oldPath, destination: newPath });
-      }
-      else {
-        if (debug) {
-          console.log(`${file} to ${fixName(file)}`);
-        }
-        await fs.copy(oldPath, newPath);
-      }
-    })
+    files.map(
+      (file) => copyFile(file, target, destination, debug)
+    )
   )
 
 };

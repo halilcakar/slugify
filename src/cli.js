@@ -42,6 +42,7 @@ export async function cli(argv) {
   try {
     await files.process({ target, destination, debug });
   } catch (error) {
+    console.log(error);
     console.error(
       chalk.red('\nUpss.. Something went wrong. Please check your files :)\n')
     );
