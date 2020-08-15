@@ -17,6 +17,9 @@
     "Git",
     "CLI"
   ],
+  "repository": {
+    "url": "https://github.com/halilcakar/slugify"
+  },
   "author": "Halil ÇAKAR <hcakar.1992@gmail.com>",
   "license": "MIT",
   "dependencies": {
