@@ -37,7 +37,11 @@ const process = async ({ target, destination, debug }) => {
   if (!fs.lstatSync(target).isDirectory()) {
     let info = target.split('\\');
     let fileName = info.pop();
-    return copyFile(fileName, info.join('\\'), info.join('\\'), debug);
+    let destinationPart = destination.split('\\');
+    if (target === destination.replace('-fix', '')) {
+      destinationPart = info;
+    }
+    return copyFile(fileName, info.join('\\'), destinationPart.join('\\'), debug);
   }
 
   let files = await fs.readdir(target, 'utf-8');

@@ -1,6 +1,6 @@
 {
   "name": "@halilcakar/slugify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Slugify your assets",
   "main": "src/cli.js",
   "bin": {

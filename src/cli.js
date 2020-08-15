@@ -7,6 +7,10 @@ import { program } from 'commander';
 import { version, name } from '../package.json';
 import files from './lib/files';
 
+const getName = () => {
+  return `${name.split('/')[1]}-cli`;
+}
+
 export async function cli(argv) {
   console.log(
     chalk.yellow(
@@ -50,11 +54,7 @@ export async function cli(argv) {
   }
   console.log(
     chalk.green(
-      '\nFile/s copied.\n'
+      '\nFile/s copied.'
     )
   );
-}
-
-function getName() {
-  return `${name.split('/')[1]}-cli`;
 }
