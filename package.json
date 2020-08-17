@@ -1,8 +1,8 @@
 {
   "name": "@halilcakar/slugify",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Slugify your assets",
-  "main": "dist/cli.js",
+  "main": "./dist/cli.js",
   "bin": {
     "@halilcakar/slugify": "bin/slugify",
     "slugify": "bin/slugify"
